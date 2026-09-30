@@ -1,0 +1,1 @@
+const button=document.querySelector("[data-morph]");button.addEventListener("click",()=>{button.className="morph loading";window.setTimeout(()=>{button.className="morph success";button.setAttribute("aria-label","Request sent")},1100);window.setTimeout(()=>{button.className="morph";button.removeAttribute("aria-label")},2600)});

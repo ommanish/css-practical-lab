@@ -1,0 +1,1 @@
+document.querySelectorAll(".accordion button").forEach(button=>button.addEventListener("click",()=>{const panel=button.nextElementSibling;const open=button.getAttribute("aria-expanded")==="true";button.setAttribute("aria-expanded",String(!open));panel.classList.toggle("open",!open)}));

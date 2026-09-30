@@ -1,8 +1,10 @@
 # CSS Practical Lab
 
-A growing collection of practical, copy-friendly CSS demos for modern UI problems — motion, scroll-driven interfaces, carousels, responsive layouts, and modern selectors.
+A growing collection of practical, copy-friendly CSS demos for modern UI problems — motion, transitions, scroll-driven interfaces, carousels, responsive layouts, and modern selectors.
 
 **Live site:** https://ommanish.github.io/css-practical-lab/
+
+Every demo includes a **Vibe Coding Prompt** you can copy into ChatGPT, Claude, Gemini, Cursor, Copilot, or another coding assistant to recreate the interaction in your preferred stack.
 
 ## Examples
 
@@ -15,6 +17,15 @@ A growing collection of practical, copy-friendly CSS demos for modern UI problem
 - [Typewriter cursor](https://ommanish.github.io/css-practical-lab/examples/typewriter-cursor/) — steps() · Cursor
 - [Gradient text shimmer](https://ommanish.github.io/css-practical-lab/examples/gradient-text-shimmer/) — background-clip · Gradient
 - [Magnetic tilt card](https://ommanish.github.io/css-practical-lab/examples/magnetic-tilt-card/) — CSS vars · Pointer
+
+### Transitions & Animation
+
+- [Morphing button states](https://ommanish.github.io/css-practical-lab/examples/morphing-button-states/) — Transition · State
+- [Smooth accordion reveal](https://ommanish.github.io/css-practical-lab/examples/smooth-accordion-reveal/) — Grid · Disclosure
+- [Animated nav indicator](https://ommanish.github.io/css-practical-lab/examples/animated-nav-indicator/) — Navigation · Indicator
+- [Clip-path image reveal](https://ommanish.github.io/css-practical-lab/examples/clip-path-image-reveal/) — clip-path · Reveal
+- [View Transition API](https://ommanish.github.io/css-practical-lab/examples/view-transition-api/) — View Transition · Shared
+- [Infinite marquee](https://ommanish.github.io/css-practical-lab/examples/infinite-marquee/) — Loop · Pause
 
 ### Scroll
 
@@ -44,6 +55,6 @@ A growing collection of practical, copy-friendly CSS demos for modern UI problem
 
 ## Use an example
 
-Each example is independent. Open its folder, copy the HTML/CSS (and small vanilla JS file when present), and adapt the pattern to your project.
+Each example is independent. Open its folder, copy the HTML/CSS (and small vanilla JS file when present), adapt the pattern, or copy the visible Vibe Coding Prompt from the live demo.
 
 No frameworks. No build step. No animation libraries.
