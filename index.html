@@ -1,147 +1,62 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A growing collection of practical, copy-friendly CSS demos for modern UI problems.">
-  <meta name="theme-color" content="#090b10">
-  <title>CSS Practical Lab — Modern CSS Examples</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Practical, copy-friendly CSS demos for motion, scroll, carousels, layouts and modern selectors.">
+<meta name="theme-color" content="#080a0f">
+<title>CSS Practical Lab — Modern CSS Examples</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="page-glow" aria-hidden="true"></div>
+<body id="top">
+<header class="site-header">
+  <a class="brand" href="./"><span>CSS</span>Practical Lab</a>
+  <nav><a href="#motion">Motion</a><a href="#scroll">Scroll</a><a href="#carousel">Carousel</a><a href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-copy"><p class="eyebrow">CSS Practical Lab / 21 studies</p><h1>CSS that <em>moves,</em><br>snaps, stacks<br>and responds.</h1><p>A practical interaction library for modern interfaces. Every study is framework-free, copy-friendly and designed to teach one difficult pattern well.</p><div class="hero-actions"><a href="#motion">Explore the lab ↓</a><a href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">Fork on GitHub ↗</a></div></div>
+  <div class="hero-art" aria-hidden="true"><i class="ring r1"></i><i class="ring r2"></i><b class="chip ch1">scroll()</b><b class="chip ch2">:has()</b><b class="chip ch3">snap</b></div>
+</section>
+<nav class="category-nav" aria-label="Example categories"><a href="#motion">Motion <span>07</span></a><a href="#scroll">Scroll <span>06</span></a><a href="#carousel">Carousel <span>05</span></a><a href="#layout">Layout <span>02</span></a><a href="#selectors">Selectors <span>01</span></a></nav>
 
-  <header class="site-header">
-    <a class="brand" href="./" aria-label="CSS Practical Lab home">
-      <span class="brand-mark">CSS</span>
-      <span>Practical Lab</span>
-    </a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#examples">Examples</a>
-      <a href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">GitHub ↗</a>
-    </nav>
-  </header>
+<section class="category" id="motion"><div class="category-head"><div><p>Motion</p><h2>Motion studies</h2></div><span>07 examples</span></div><div class="demo-grid">
+<article class="demo-card" data-kind="motion"><div class="preview"><span>01</span><i></i><b>Animation</b></div><div class="demo-body"><small>Animation · Gradient</small><h3>Animated gradient border</h3><div class="actions"><a href="examples/animated-gradient-border/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/animated-gradient-border" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>04</span><i></i><b>Focus</b></div><div class="demo-body"><small>Hover · Focus</small><h3>CSS card reveal</h3><div class="actions"><a href="examples/css-card-reveal/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/css-card-reveal" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>07</span><i></i><b>Type</b></div><div class="demo-body"><small>Typography · Stagger</small><h3>Staggered text reveal</h3><div class="actions"><a href="examples/staggered-text-reveal/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/staggered-text-reveal" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>08</span><i></i><b>Swap</b></div><div class="demo-body"><small>Keyframes · Type</small><h3>Word-swap headline</h3><div class="actions"><a href="examples/word-swap-headline/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/word-swap-headline" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>09</span><i></i><b>steps()</b></div><div class="demo-body"><small>steps() · Cursor</small><h3>Typewriter cursor</h3><div class="actions"><a href="examples/typewriter-cursor/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/typewriter-cursor" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>10</span><i></i><b>Shimmer</b></div><div class="demo-body"><small>background-clip · Gradient</small><h3>Gradient text shimmer</h3><div class="actions"><a href="examples/gradient-text-shimmer/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/gradient-text-shimmer" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="motion"><div class="preview"><span>11</span><i></i><b>Tilt</b></div><div class="demo-body"><small>CSS vars · Pointer</small><h3>Magnetic tilt card</h3><div class="actions"><a href="examples/magnetic-tilt-card/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/magnetic-tilt-card" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+</div></section>
 
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> Modern CSS, explained by example</p>
-        <h1>Practical CSS for the parts that get <em>tricky.</em></h1>
-        <p class="hero-text">A growing collection of focused, framework-free demos for layout, animation, modern selectors and responsive UI patterns. Open one, inspect it, fork it, and make it yours.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#examples">Browse examples</a>
-          <a class="button button-ghost" href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">Fork on GitHub ↗</a>
-        </div>
-      </div>
+<section class="category" id="scroll"><div class="category-head"><div><p>Scroll</p><h2>Scroll studies</h2></div><span>06 examples</span></div><div class="demo-grid">
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>02</span><i></i><b>Sticky</b></div><div class="demo-body"><small>Sticky · Layout</small><h3>Sticky scroll layout</h3><div class="actions"><a href="examples/sticky-scroll-layout/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/sticky-scroll-layout" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>12</span><i></i><b>Progress</b></div><div class="demo-body"><small>scroll-timeline · Progress</small><h3>Scroll progress indicator</h3><div class="actions"><a href="examples/scroll-progress/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/scroll-progress" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>13</span><i></i><b>Reveal</b></div><div class="demo-body"><small>view() · Reveal</small><h3>Content reveal on scroll</h3><div class="actions"><a href="examples/scroll-content-reveal/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/scroll-content-reveal" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>14</span><i></i><b>Story</b></div><div class="demo-body"><small>Sticky · Narrative</small><h3>Sticky storytelling</h3><div class="actions"><a href="examples/sticky-storytelling/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/sticky-storytelling" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>15</span><i></i><b>Gallery</b></div><div class="demo-body"><small>Overflow · Snap</small><h3>Horizontal scroll gallery</h3><div class="actions"><a href="examples/horizontal-scroll-gallery/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/horizontal-scroll-gallery" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="scroll"><div class="preview"><span>16</span><i></i><b>Depth</b></div><div class="demo-body"><small>Depth · Transform</small><h3>Parallax depth section</h3><div class="actions"><a href="examples/parallax-depth/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/parallax-depth" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+</div></section>
 
-      <div class="hero-panel" aria-label="Project summary">
-        <div class="code-window">
-          <div class="window-bar"><i></i><i></i><i></i><span>styles.css</span></div>
-          <pre><code><span class="code-muted">/* modern CSS, less JavaScript */</span>
-.demo {
-  container-type: inline-size;
-}
+<section class="category" id="carousel"><div class="category-head"><div><p>Carousel</p><h2>Carousel studies</h2></div><span>05 examples</span></div><div class="demo-grid">
+<article class="demo-card" data-kind="carousel"><div class="preview"><span>17</span><i></i><b>Snap</b></div><div class="demo-body"><small>scroll-snap · Touch</small><h3>CSS scroll-snap carousel</h3><div class="actions"><a href="examples/scroll-snap-carousel/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/scroll-snap-carousel" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="carousel"><div class="preview"><span>18</span><i></i><b>Auto</b></div><div class="demo-body"><small>Autoplay · A11y</small><h3>Autoplay carousel with pause</h3><div class="actions"><a href="examples/autoplay-carousel/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/autoplay-carousel" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="carousel"><div class="preview"><span>19</span><i></i><b>Stack</b></div><div class="demo-body"><small>Stack · Controls</small><h3>Stacked card rotator</h3><div class="actions"><a href="examples/stacked-card-rotator/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/stacked-card-rotator" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="carousel"><div class="preview"><span>20</span><i></i><b>3D</b></div><div class="demo-body"><small>Perspective · 3D</small><h3>3D coverflow carousel</h3><div class="actions"><a href="examples/coverflow-carousel/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/coverflow-carousel" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="carousel"><div class="preview"><span>21</span><i></i><b>Sections</b></div><div class="demo-body"><small>Scroll snap · Sections</small><h3>Full-page section slider</h3><div class="actions"><a href="examples/full-page-section-slider/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/full-page-section-slider" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+</div></section>
 
-.card:has(input:checked) {
-  transform: translateY(-.4rem);
-}
+<section class="category" id="layout"><div class="category-head"><div><p>Layout</p><h2>Layout studies</h2></div><span>02 examples</span></div><div class="demo-grid">
+<article class="demo-card" data-kind="layout"><div class="preview"><span>03</span><i></i><b>Grid</b></div><div class="demo-body"><small>Grid · Overlap</small><h3>Overlapping grid</h3><div class="actions"><a href="examples/overlapping-grid/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/overlapping-grid" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+<article class="demo-card" data-kind="layout"><div class="preview"><span>05</span><i></i><b>Container</b></div><div class="demo-body"><small>@container · Responsive</small><h3>Container query cards</h3><div class="actions"><a href="examples/container-query-cards/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/container-query-cards" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+</div></section>
 
-@container (min-width: 32rem) {
-  .card { grid-template-columns: 1fr 1fr; }
-}</code></pre>
-        </div>
-        <div class="stat-row">
-          <div><strong>06</strong><span>Examples</span></div>
-          <div><strong>0</strong><span>Frameworks</span></div>
-          <div><strong>100%</strong><span>Copy-friendly</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="examples-section" id="examples">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow"><span></span> Example directory</p>
-          <h2>Learn one pattern at a time.</h2>
-        </div>
-        <p>Each demo is intentionally small, independent and easy to reuse in your own project.</p>
-      </div>
-
-      <div class="demo-grid">
-        <article class="demo-card demo-card-featured">
-          <div class="demo-preview preview-gradient" aria-hidden="true"><div class="gradient-demo"><span>CSS</span></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>01</span><div class="tags"><b>Animation</b><b>Gradient</b></div></div>
-            <h3>Animated gradient border</h3>
-            <p>Create a polished animated border with conic gradients and pseudo-elements, with reduced-motion support built in.</p>
-            <div class="demo-actions"><a href="examples/animated-gradient-border/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/animated-gradient-border" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-
-        <article class="demo-card">
-          <div class="demo-preview preview-sticky" aria-hidden="true"><div class="sticky-mini"><span></span><div><i></i><i></i><i></i></div></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>02</span><div class="tags"><b>Sticky</b><b>Layout</b></div></div>
-            <h3>Sticky scroll layout</h3>
-            <p>Keep a visual panel in view while long-form content scrolls beside it, without JavaScript.</p>
-            <div class="demo-actions"><a href="examples/sticky-scroll-layout/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/sticky-scroll-layout" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-
-        <article class="demo-card">
-          <div class="demo-preview preview-grid" aria-hidden="true"><div class="grid-mini"><i></i><i></i><i></i></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>03</span><div class="tags"><b>Grid</b><b>Overlap</b></div></div>
-            <h3>Overlapping grid</h3>
-            <p>Build an asymmetric editorial composition with CSS Grid instead of fragile page-level absolute positioning.</p>
-            <div class="demo-actions"><a href="examples/overlapping-grid/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/overlapping-grid" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-
-        <article class="demo-card">
-          <div class="demo-preview preview-reveal" aria-hidden="true"><div class="reveal-mini"><span>Hover</span><strong>Reveal ↑</strong></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>04</span><div class="tags"><b>Hover</b><b>Focus</b></div></div>
-            <h3>CSS card reveal</h3>
-            <p>Reveal secondary content with a smooth hover interaction while keeping the same behavior available to keyboard users.</p>
-            <div class="demo-actions"><a href="examples/css-card-reveal/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/css-card-reveal" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-
-        <article class="demo-card">
-          <div class="demo-preview preview-container" aria-hidden="true"><div class="container-mini"><i></i><i></i><i></i></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>05</span><div class="tags"><b>@container</b><b>Responsive</b></div></div>
-            <h3>Container query cards</h3>
-            <p>Make reusable cards respond to the space they actually receive instead of relying only on viewport breakpoints.</p>
-            <div class="demo-actions"><a href="examples/container-query-cards/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/container-query-cards" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-
-        <article class="demo-card">
-          <div class="demo-preview preview-has" aria-hidden="true"><div class="has-mini"><span>:has()</span><i>✓</i></div></div>
-          <div class="demo-body">
-            <div class="demo-meta"><span>06</span><div class="tags"><b>:has()</b><b>Selector</b></div></div>
-            <h3>:has() interaction</h3>
-            <p>Let a child element influence its parent state with the relational selector—no JavaScript state plumbing required.</p>
-            <div class="demo-actions"><a href="examples/has-selector-interaction/">View Demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/has-selector-interaction" target="_blank" rel="noreferrer">View Source ↗</a></div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <p class="eyebrow"><span></span> Built to be reused</p>
-      <h2>See something useful?<br>Take the code.</h2>
-      <p>Every example is plain HTML and CSS. Fork the repository, copy a folder, or adapt a pattern directly into your project.</p>
-      <a class="button button-primary" href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">Explore the repository ↗</a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <span>CSS Practical Lab</span>
-    <p>Practical patterns. Minimal dependencies. Built for learning and reuse.</p>
-    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
-  </footer>
+<section class="category" id="selectors"><div class="category-head"><div><p>Selectors</p><h2>Selector studies</h2></div><span>01 example</span></div><div class="demo-grid">
+<article class="demo-card" data-kind="selector"><div class="preview"><span>06</span><i></i><b>:has()</b></div><div class="demo-body"><small>:has() · State</small><h3>:has() interaction</h3><div class="actions"><a href="examples/has-selector-interaction/">View demo →</a><a href="https://github.com/ommanish/css-practical-lab/tree/main/examples/has-selector-interaction" target="_blank" rel="noreferrer">Source ↗</a></div></div></article>
+</div></section>
+<section class="cta"><p>Built to be reused</p><h2>See something useful?<br><em>Take the code.</em></h2><a href="https://github.com/ommanish/css-practical-lab" target="_blank" rel="noreferrer">Explore repository ↗</a></section>
+</main>
+<footer><strong>CSS Practical Lab</strong><span>21 focused examples · 0 frameworks</span><a href="#top">Back to top ↑</a></footer>
 </body>
 </html>

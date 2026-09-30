@@ -1,45 +1,49 @@
 # CSS Practical Lab
 
-A growing collection of practical, copy-friendly CSS demos for modern UI problems.
+A growing collection of practical, copy-friendly CSS demos for modern UI problems — motion, scroll-driven interfaces, carousels, responsive layouts, and modern selectors.
 
 **Live site:** https://ommanish.github.io/css-practical-lab/
 
 ## Examples
 
-| Example | What it demonstrates | Demo |
-| --- | --- | --- |
-| Animated gradient border | Conic gradients, pseudo-elements, reduced motion | [View demo](https://ommanish.github.io/css-practical-lab/examples/animated-gradient-border/) |
-| Sticky scroll layout | Sticky positioning beside long-form content | [View demo](https://ommanish.github.io/css-practical-lab/examples/sticky-scroll-layout/) |
-| Overlapping grid | Asymmetric layouts with CSS Grid | [View demo](https://ommanish.github.io/css-practical-lab/examples/overlapping-grid/) |
-| CSS card reveal | Hover and keyboard-friendly reveal states | [View demo](https://ommanish.github.io/css-practical-lab/examples/css-card-reveal/) |
-| Container query cards | Component-level responsive behavior | [View demo](https://ommanish.github.io/css-practical-lab/examples/container-query-cards/) |
-| `:has()` interaction | Parent state driven by child state | [View demo](https://ommanish.github.io/css-practical-lab/examples/has-selector-interaction/) |
+### Motion
+
+- [Animated gradient border](https://ommanish.github.io/css-practical-lab/examples/animated-gradient-border/) — Animation · Gradient
+- [CSS card reveal](https://ommanish.github.io/css-practical-lab/examples/css-card-reveal/) — Hover · Focus
+- [Staggered text reveal](https://ommanish.github.io/css-practical-lab/examples/staggered-text-reveal/) — Typography · Stagger
+- [Word-swap headline](https://ommanish.github.io/css-practical-lab/examples/word-swap-headline/) — Keyframes · Type
+- [Typewriter cursor](https://ommanish.github.io/css-practical-lab/examples/typewriter-cursor/) — steps() · Cursor
+- [Gradient text shimmer](https://ommanish.github.io/css-practical-lab/examples/gradient-text-shimmer/) — background-clip · Gradient
+- [Magnetic tilt card](https://ommanish.github.io/css-practical-lab/examples/magnetic-tilt-card/) — CSS vars · Pointer
+
+### Scroll
+
+- [Sticky scroll layout](https://ommanish.github.io/css-practical-lab/examples/sticky-scroll-layout/) — Sticky · Layout
+- [Scroll progress indicator](https://ommanish.github.io/css-practical-lab/examples/scroll-progress/) — scroll-timeline · Progress
+- [Content reveal on scroll](https://ommanish.github.io/css-practical-lab/examples/scroll-content-reveal/) — view() · Reveal
+- [Sticky storytelling](https://ommanish.github.io/css-practical-lab/examples/sticky-storytelling/) — Sticky · Narrative
+- [Horizontal scroll gallery](https://ommanish.github.io/css-practical-lab/examples/horizontal-scroll-gallery/) — Overflow · Snap
+- [Parallax depth section](https://ommanish.github.io/css-practical-lab/examples/parallax-depth/) — Depth · Transform
+
+### Carousel
+
+- [CSS scroll-snap carousel](https://ommanish.github.io/css-practical-lab/examples/scroll-snap-carousel/) — scroll-snap · Touch
+- [Autoplay carousel with pause](https://ommanish.github.io/css-practical-lab/examples/autoplay-carousel/) — Autoplay · A11y
+- [Stacked card rotator](https://ommanish.github.io/css-practical-lab/examples/stacked-card-rotator/) — Stack · Controls
+- [3D coverflow carousel](https://ommanish.github.io/css-practical-lab/examples/coverflow-carousel/) — Perspective · 3D
+- [Full-page section slider](https://ommanish.github.io/css-practical-lab/examples/full-page-section-slider/) — Scroll snap · Sections
+
+### Layout
+
+- [Overlapping grid](https://ommanish.github.io/css-practical-lab/examples/overlapping-grid/) — Grid · Overlap
+- [Container query cards](https://ommanish.github.io/css-practical-lab/examples/container-query-cards/) — @container · Responsive
+
+### Selectors
+
+- [:has() interaction](https://ommanish.github.io/css-practical-lab/examples/has-selector-interaction/) — :has() · State
 
 ## Use an example
 
-Each example is independent and uses plain HTML and CSS.
+Each example is independent. Open its folder, copy the HTML/CSS (and small vanilla JS file when present), and adapt the pattern to your project.
 
-1. Open the example folder you want.
-2. Copy its `index.html` and `style.css` into your project, or fork this repository.
-3. Adapt the markup and styles to your use case.
-
-No framework, package install, or build step is required.
-
-## Structure
-
-```text
-css-practical-lab/
-├── index.html
-├── styles.css
-└── examples/
-    ├── animated-gradient-border/
-    ├── sticky-scroll-layout/
-    ├── overlapping-grid/
-    ├── css-card-reveal/
-    ├── container-query-cards/
-    └── has-selector-interaction/
-```
-
-## Contributing
-
-Feel free to fork the repository and experiment with any example. Changes to `main` are protected and go through the repository's branch rules.
+No frameworks. No build step. No animation libraries.
