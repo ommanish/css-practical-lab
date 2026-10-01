@@ -25,7 +25,6 @@ def check_component(slug):
         errors.append(f'{slug}: missing reduced-motion handling')
 for c in COMPONENTS: check_component(c)
 
-# Task 2 component-specific checks
 def task2_checks():
     base=ROOT/'components'/'product-storytelling'
     a=base/'announcement-bar'/'index.html'
@@ -48,6 +47,23 @@ def task2_checks():
         for token in ['repeat(3','repeat(2','grid-template-columns:1fr']:
             if token not in css.replace(' ', ''): errors.append(f'solution-card-grid: missing responsive rule {token}')
 task2_checks()
+
+def task3_checks():
+    base=ROOT/'components'/'product-storytelling'
+    tabs=base/'capability-tabs'/'index.html'
+    if tabs.exists():
+        t=tabs.read_text()
+        if 'role="tablist"' not in t: errors.append('capability-tabs: missing tablist')
+        if t.count('role="tab"') < 3: errors.append('capability-tabs: expected at least 3 tabs')
+        if t.count('role="tabpanel"') < 3: errors.append('capability-tabs: expected matching panels')
+        if t.count('aria-selected="true"') != 1: errors.append('capability-tabs: exactly one tab must start selected')
+        if not (base/'capability-tabs'/'script.js').exists(): errors.append('capability-tabs: missing script.js')
+    f=base/'numbered-feature-grid'/'index.html'
+    if f.exists():
+        t=f.read_text()
+        for n in ['01','02','03','04']:
+            if f'>{n}<' not in t: errors.append(f'numbered-feature-grid: missing {n}')
+task3_checks()
 
 full=ROOT/'examples'/'enterprise-product-overview'
 if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
