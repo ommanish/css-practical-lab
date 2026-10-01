@@ -24,8 +24,7 @@ function initPageMotion(){
     ['.cap-tabs',''],
     ['.cap-panels','motion-zoom'],
     ['.feature-grid > article',''],
-    ['.trust > .eyebrow',''],
-    ['.trust-track',''],
+    ['.trust',''],
     ['.story-card',''],
     ['.proof-grid > article',''],
     ['.promo > :first-child','motion-left'],
@@ -73,7 +72,7 @@ const panels=[...document.querySelectorAll('.cap-panels [role="tabpanel"]')];
 const indicator=document.querySelector('.cap-indicator');
 function moveIndicator(tab){if(!tab||!indicator)return;const a=tab.getBoundingClientRect(),b=tab.parentElement.getBoundingClientRect();indicator.style.width=`${a.width}px`;indicator.style.transform=`translateX(${a.left-b.left}px)`}
 function applyTab(tab,focus=false){tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});panels.forEach(p=>p.hidden=p.id!==tab.getAttribute('aria-controls'));moveIndicator(tab);if(focus)tab.focus()}
-function selectTab(tab,focus=false){if(document.startViewTransition&&!reduceMotion.matches){document.startViewTransition(()=>applyTab(tab,focus))}else applyTab(tab,focus)}
+function selectTab(tab,focus=false){applyTab(tab,focus)}
 tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',e=>{let n=null;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==null){e.preventDefault();selectTab(tabs[n],true)}})});
 window.addEventListener('resize',()=>moveIndicator(document.querySelector('.cap-tabs [aria-selected="true"]')));
 moveIndicator(tabs[0]);
