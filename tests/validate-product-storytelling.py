@@ -65,6 +65,23 @@ def task3_checks():
             if f'>{n}<' not in t: errors.append(f'numbered-feature-grid: missing {n}')
 task3_checks()
 
+def task4_checks():
+    base=ROOT/'components'/'product-storytelling'
+    m=base/'logo-marquee'/'index.html'
+    if m.exists():
+        t=m.read_text(); css=(base/'logo-marquee'/'style.css').read_text() if (base/'logo-marquee'/'style.css').exists() else ''
+        if t.count('class="marquee__set"') < 2: errors.append('logo-marquee: needs two repeated sets')
+        if ':hover' not in css or ':focus-within' not in css: errors.append('logo-marquee: missing hover/focus pause')
+    g=base/'customer-story-gallery'/'index.html'
+    if g.exists():
+        t=g.read_text(); css=(base/'customer-story-gallery'/'style.css').read_text() if (base/'customer-story-gallery'/'style.css').exists() else ''
+        if len(re.findall(r'class="story-card(?:\s|\")', t)) < 4: errors.append('customer-story-gallery: needs at least 4 story cards')
+        if 'scroll-snap-type' not in css: errors.append('customer-story-gallery: missing scroll snap')
+        for label in ['Previous story','Next story']:
+            if label not in t: errors.append(f'customer-story-gallery: missing {label} button')
+        if not (base/'customer-story-gallery'/'script.js').exists(): errors.append('customer-story-gallery: missing script.js')
+task4_checks()
+
 full=ROOT/'examples'/'enterprise-product-overview'
 if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
 else:
