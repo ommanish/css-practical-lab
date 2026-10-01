@@ -73,8 +73,12 @@ Standalone component demos:
 - [Conversion CTA](https://ommanish.github.io/css-practical-lab/components/product-storytelling/conversion-cta/)
 - [FAQ accordion](https://ommanish.github.io/css-practical-lab/components/product-storytelling/faq-accordion/)
 
+### Motion Sites
+
+- [NOVA Signal](https://ommanish.github.io/css-practical-lab/examples/nova-signal-motion-site/) — Flagship product storytelling · GSAP + ScrollTrigger · Responsive + reduced-motion fallback
+
 ## Use an example
 
 Each example is independent. Open its folder, copy the HTML/CSS (and small vanilla JS file when present), adapt the pattern, or copy the visible Vibe Coding Prompt from the live demo.
 
-No frameworks. No build step. No animation libraries.
+No frameworks. No build step. Most demos are dependency-free; NOVA Signal uses GSAP + ScrollTrigger as progressive enhancement.
