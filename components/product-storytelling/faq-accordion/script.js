@@ -1,0 +1,1 @@
+document.querySelectorAll('.faq__item button').forEach(button=>button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));button.closest('.faq__item').classList.toggle('is-open',!open)}));
