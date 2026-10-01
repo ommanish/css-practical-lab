@@ -1,6 +1,6 @@
 # CSS Practical Lab
 
-A growing collection of practical, copy-friendly CSS demos for modern UI problems — motion, transitions, scroll-driven interfaces, carousels, responsive layouts, and modern selectors.
+A growing collection of practical, copy-friendly CSS demos for modern UI problems — motion, transitions, scroll-driven interfaces, carousels, responsive layouts, modern selectors, and product storytelling systems.
 
 **Live site:** https://ommanish.github.io/css-practical-lab/
 
@@ -52,6 +52,26 @@ Every demo includes a **Vibe Coding Prompt** you can copy into ChatGPT, Claude, 
 ### Selectors
 
 - [:has() interaction](https://ommanish.github.io/css-practical-lab/examples/has-selector-interaction/) — :has() · State
+
+### Product Storytelling System
+
+- [Enterprise product overview](https://ommanish.github.io/css-practical-lab/examples/enterprise-product-overview/) — 13-section full-page composition · CSS-first motion
+
+Standalone component demos:
+
+- [Announcement bar](https://ommanish.github.io/css-practical-lab/components/product-storytelling/announcement-bar/)
+- [Product hero marquee](https://ommanish.github.io/css-practical-lab/components/product-storytelling/hero-product-marquee/)
+- [Solution card grid](https://ommanish.github.io/css-practical-lab/components/product-storytelling/solution-card-grid/)
+- [Capability tabs](https://ommanish.github.io/css-practical-lab/components/product-storytelling/capability-tabs/)
+- [Numbered feature grid](https://ommanish.github.io/css-practical-lab/components/product-storytelling/numbered-feature-grid/)
+- [Trust logo marquee](https://ommanish.github.io/css-practical-lab/components/product-storytelling/logo-marquee/)
+- [Customer story gallery](https://ommanish.github.io/css-practical-lab/components/product-storytelling/customer-story-gallery/)
+- [Proof cards](https://ommanish.github.io/css-practical-lab/components/product-storytelling/analyst-proof-cards/)
+- [Community promo](https://ommanish.github.io/css-practical-lab/components/product-storytelling/community-promo/)
+- [Integration card grid](https://ommanish.github.io/css-practical-lab/components/product-storytelling/integration-card-grid/)
+- [Resource grid](https://ommanish.github.io/css-practical-lab/components/product-storytelling/resource-grid/)
+- [Conversion CTA](https://ommanish.github.io/css-practical-lab/components/product-storytelling/conversion-cta/)
+- [FAQ accordion](https://ommanish.github.io/css-practical-lab/components/product-storytelling/faq-accordion/)
 
 ## Use an example
 
