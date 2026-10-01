@@ -13,8 +13,8 @@ html.motion-enabled .motion-reveal .motion-media-target,html.motion-enabled .mot
 html.motion-enabled .motion-reveal.is-visible .motion-media-target,html.motion-enabled .motion-reveal.motion-media-target.is-visible{transform:scale(1)}
 html.motion-enabled .section-head.motion-reveal h2{transform:translateY(18px);transition:transform .9s var(--motion-ease) calc(var(--motion-delay) + 70ms)}
 html.motion-enabled .section-head.motion-reveal.is-visible h2{transform:none}
-html.motion-enabled .trust-track.motion-reveal{transform:translate3d(8vw,0,0);filter:none}
-html.motion-enabled .trust-track.motion-reveal.is-visible{transform:translate3d(0,0,0)}
+html.motion-enabled .cap-panels article:not([hidden]){animation:tab-panel-enter .48s var(--motion-ease) both}
 @keyframes curtain-sweep{from{transform:translateX(-105%)}to{transform:translateX(105%)}}
 @keyframes curtain-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@media(prefers-reduced-motion:reduce){.page-load-curtain{display:none!important}html.motion-enabled .motion-reveal,html.motion-enabled .motion-reveal.motion-left,html.motion-enabled .motion-reveal.motion-right,html.motion-enabled .motion-reveal.motion-zoom{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}.motion-media-target{transform:none!important;transition:none!important}}
+@keyframes tab-panel-enter{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@media(prefers-reduced-motion:reduce){.page-load-curtain{display:none!important}html.motion-enabled .motion-reveal,html.motion-enabled .motion-reveal.motion-left,html.motion-enabled .motion-reveal.motion-right,html.motion-enabled .motion-reveal.motion-zoom{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}.motion-media-target{transform:none!important;transition:none!important}.cap-panels article{animation:none!important}}
