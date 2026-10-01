@@ -100,6 +100,28 @@ def task5_checks():
         if len(set(re.findall(r'data-symbol="([^"]+)"',t))) != 4: errors.append('integration-card-grid: symbols must be unique')
 task5_checks()
 
+def task6_checks():
+    base=ROOT/'components'/'product-storytelling'
+    r=base/'resource-grid'/'index.html'
+    if r.exists():
+        t=r.read_text()
+        if len(re.findall(r'class="resource-card(?:\s|\")',t)) < 4: errors.append('resource-grid: expected at least 4 resource cards')
+        if t.count('class="resource-card__type"') < 4: errors.append('resource-grid: missing resource type labels')
+    c=base/'conversion-cta'/'index.html'
+    if c.exists():
+        t=c.read_text()
+        if len(re.findall(r'class="conversion-card(?:\s|\")',t)) != 2: errors.append('conversion-cta: expected exactly 2 primary actions')
+    f=base/'faq-accordion'/'index.html'
+    if f.exists():
+        t=f.read_text(); css=(base/'faq-accordion'/'style.css').read_text() if (base/'faq-accordion'/'style.css').exists() else ''
+        if t.count('aria-expanded=') < 5: errors.append('faq-accordion: expected at least 5 expandable buttons')
+        if 'faq__icon' not in t: errors.append('faq-accordion: missing fixed icon container')
+        if '.faq__icon::before' not in css or '.faq__icon::after' not in css: errors.append('faq-accordion: glyph must use pseudo-elements')
+        base_rule=re.search(r'\.faq__icon\{([^}]*)\}',css)
+        if base_rule and re.search(r'(^|;)\s*transform\s*:',base_rule.group(1)): errors.append('faq-accordion: icon container must not transform')
+        if not (base/'faq-accordion'/'script.js').exists(): errors.append('faq-accordion: missing script.js')
+task6_checks()
+
 full=ROOT/'examples'/'enterprise-product-overview'
 if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
 else:
