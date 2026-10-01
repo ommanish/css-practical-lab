@@ -24,6 +24,31 @@ def check_component(slug):
     if ('animation:' in ct or 'transition:' in ct or '@keyframes' in ct) and 'prefers-reduced-motion' not in ct:
         errors.append(f'{slug}: missing reduced-motion handling')
 for c in COMPONENTS: check_component(c)
+
+# Task 2 component-specific checks
+def task2_checks():
+    base=ROOT/'components'/'product-storytelling'
+    a=base/'announcement-bar'/'index.html'
+    if a.exists():
+        t=a.read_text()
+        if 'class="announcement__message"' not in t: errors.append('announcement-bar: missing message')
+        if 'class="announcement__cta"' not in t: errors.append('announcement-bar: missing inline CTA')
+        css=(base/'announcement-bar'/'style.css').read_text() if (base/'announcement-bar'/'style.css').exists() else ''
+        if ':focus-visible' not in css: errors.append('announcement-bar: missing focus-visible CTA treatment')
+    h=base/'hero-product-marquee'/'index.html'
+    if h.exists():
+        t=h.read_text()
+        for token in ['class="eyebrow"','<h1','class="hero__copy"','class="hero__actions"','class="hero__visual"']:
+            if token not in t: errors.append(f'hero-product-marquee: missing {token}')
+        if t.count('class="button') < 2: errors.append('hero-product-marquee: needs two CTAs')
+    g=base/'solution-card-grid'/'index.html'
+    if g.exists():
+        t=g.read_text(); css=(base/'solution-card-grid'/'style.css').read_text() if (base/'solution-card-grid'/'style.css').exists() else ''
+        if t.count('class="solution-card"') != 6: errors.append('solution-card-grid: expected 6 cards')
+        for token in ['repeat(3','repeat(2','grid-template-columns:1fr']:
+            if token not in css.replace(' ', ''): errors.append(f'solution-card-grid: missing responsive rule {token}')
+task2_checks()
+
 full=ROOT/'examples'/'enterprise-product-overview'
 if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
 else:
