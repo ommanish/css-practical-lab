@@ -82,6 +82,24 @@ def task4_checks():
         if not (base/'customer-story-gallery'/'script.js').exists(): errors.append('customer-story-gallery: missing script.js')
 task4_checks()
 
+def task5_checks():
+    base=ROOT/'components'/'product-storytelling'
+    p=base/'analyst-proof-cards'/'index.html'
+    if p.exists():
+        t=p.read_text()
+        if len(re.findall(r'class="proof-card(?:\s|\")',t)) != 2: errors.append('analyst-proof-cards: expected exactly 2 proof cards')
+    c=base/'community-promo'/'index.html'
+    if c.exists():
+        t=c.read_text()
+        for token in ['class="promo__visual"','class="promo__eyebrow"','<h1','class="promo__body"','class="promo__cta"']:
+            if token not in t: errors.append(f'community-promo: missing {token}')
+    i=base/'integration-card-grid'/'index.html'
+    if i.exists():
+        t=i.read_text()
+        if len(re.findall(r'class="integration-card(?:\s|\")',t)) != 4: errors.append('integration-card-grid: expected exactly 4 cards')
+        if len(set(re.findall(r'data-symbol="([^"]+)"',t))) != 4: errors.append('integration-card-grid: symbols must be unique')
+task5_checks()
+
 full=ROOT/'examples'/'enterprise-product-overview'
 if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
 else:
