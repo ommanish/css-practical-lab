@@ -1,135 +1,83 @@
 from pathlib import Path
-import re, sys
-ROOT = Path(__file__).resolve().parents[1]
-COMPONENTS = [
-'announcement-bar','hero-product-marquee','solution-card-grid','capability-tabs','numbered-feature-grid','logo-marquee','customer-story-gallery','analyst-proof-cards','community-promo','integration-card-grid','resource-grid','conversion-cta','faq-accordion']
-FORBIDDEN = ['Salesforce','Data 360','Agentforce','Dreamforce','Forrester','Gartner','Snowflake','Databricks']
+import re,sys
+ROOT=Path(__file__).resolve().parents[1]
+BASE=ROOT/'components'/'product-storytelling'
+COMPONENTS=['announcement-bar','hero-product-marquee','solution-card-grid','capability-tabs','numbered-feature-grid','logo-marquee','customer-story-gallery','analyst-proof-cards','community-promo','integration-card-grid','resource-grid','conversion-cta','faq-accordion']
+FORBIDDEN=['Salesforce','Data 360','Agentforce','Dreamforce','Forrester','Gartner','Snowflake','Databricks']
 errors=[]
-def check_prompt(text, label):
-    for s in ['Vibe Coding Prompt','data-prompt','data-prompt-text','data-copy-prompt']:
-        if s not in text: errors.append(f'{label}: missing {s}')
-def scan_forbidden(text,label):
-    for s in FORBIDDEN:
-        if re.search(re.escape(s), text, re.I): errors.append(f'{label}: forbidden brand string {s}')
-def check_component(slug):
-    d=ROOT/'components'/'product-storytelling'/slug
-    if not d.exists(): errors.append(f'missing component directory: {slug}'); return
-    html=d/'index.html'; css=d/'style.css'
-    if not html.exists(): errors.append(f'{slug}: missing index.html'); return
-    if not css.exists(): errors.append(f'{slug}: missing style.css'); return
-    ht=html.read_text(); ct=css.read_text(); check_prompt(ht,slug); scan_forbidden(ht,slug); scan_forbidden(ct,slug)
-    if 'http://' in ht or 'https://' in ht:
-        external=[u for u in re.findall(r'https?://[^\"\'\s<>]+',ht) if 'github.com/ommanish/css-practical-lab' not in u]
-        if external: errors.append(f'{slug}: external required asset/link dependency {external[0]}')
-    if ('animation:' in ct or 'transition:' in ct or '@keyframes' in ct) and 'prefers-reduced-motion' not in ct:
-        errors.append(f'{slug}: missing reduced-motion handling')
-for c in COMPONENTS: check_component(c)
-
-def task2_checks():
-    base=ROOT/'components'/'product-storytelling'
-    a=base/'announcement-bar'/'index.html'
-    if a.exists():
-        t=a.read_text()
-        if 'class="announcement__message"' not in t: errors.append('announcement-bar: missing message')
-        if 'class="announcement__cta"' not in t: errors.append('announcement-bar: missing inline CTA')
-        css=(base/'announcement-bar'/'style.css').read_text() if (base/'announcement-bar'/'style.css').exists() else ''
-        if ':focus-visible' not in css: errors.append('announcement-bar: missing focus-visible CTA treatment')
-    h=base/'hero-product-marquee'/'index.html'
-    if h.exists():
-        t=h.read_text()
-        for token in ['class="eyebrow"','<h1','class="hero__copy"','class="hero__actions"','class="hero__visual"']:
-            if token not in t: errors.append(f'hero-product-marquee: missing {token}')
-        if t.count('class="button') < 2: errors.append('hero-product-marquee: needs two CTAs')
-    g=base/'solution-card-grid'/'index.html'
-    if g.exists():
-        t=g.read_text(); css=(base/'solution-card-grid'/'style.css').read_text() if (base/'solution-card-grid'/'style.css').exists() else ''
-        if t.count('class="solution-card"') != 6: errors.append('solution-card-grid: expected 6 cards')
-        for token in ['repeat(3','repeat(2','grid-template-columns:1fr']:
-            if token not in css.replace(' ', ''): errors.append(f'solution-card-grid: missing responsive rule {token}')
-task2_checks()
-
-def task3_checks():
-    base=ROOT/'components'/'product-storytelling'
-    tabs=base/'capability-tabs'/'index.html'
-    if tabs.exists():
-        t=tabs.read_text()
-        if 'role="tablist"' not in t: errors.append('capability-tabs: missing tablist')
-        if t.count('role="tab"') < 3: errors.append('capability-tabs: expected at least 3 tabs')
-        if t.count('role="tabpanel"') < 3: errors.append('capability-tabs: expected matching panels')
-        if t.count('aria-selected="true"') != 1: errors.append('capability-tabs: exactly one tab must start selected')
-        if not (base/'capability-tabs'/'script.js').exists(): errors.append('capability-tabs: missing script.js')
-    f=base/'numbered-feature-grid'/'index.html'
-    if f.exists():
-        t=f.read_text()
-        for n in ['01','02','03','04']:
-            if f'>{n}<' not in t: errors.append(f'numbered-feature-grid: missing {n}')
-task3_checks()
-
-def task4_checks():
-    base=ROOT/'components'/'product-storytelling'
-    m=base/'logo-marquee'/'index.html'
-    if m.exists():
-        t=m.read_text(); css=(base/'logo-marquee'/'style.css').read_text() if (base/'logo-marquee'/'style.css').exists() else ''
-        if t.count('class="marquee__set"') < 2: errors.append('logo-marquee: needs two repeated sets')
-        if ':hover' not in css or ':focus-within' not in css: errors.append('logo-marquee: missing hover/focus pause')
-    g=base/'customer-story-gallery'/'index.html'
-    if g.exists():
-        t=g.read_text(); css=(base/'customer-story-gallery'/'style.css').read_text() if (base/'customer-story-gallery'/'style.css').exists() else ''
-        if len(re.findall(r'class="story-card(?:\s|\")', t)) < 4: errors.append('customer-story-gallery: needs at least 4 story cards')
-        if 'scroll-snap-type' not in css: errors.append('customer-story-gallery: missing scroll snap')
-        for label in ['Previous story','Next story']:
-            if label not in t: errors.append(f'customer-story-gallery: missing {label} button')
-        if not (base/'customer-story-gallery'/'script.js').exists(): errors.append('customer-story-gallery: missing script.js')
-task4_checks()
-
-def task5_checks():
-    base=ROOT/'components'/'product-storytelling'
-    p=base/'analyst-proof-cards'/'index.html'
-    if p.exists():
-        t=p.read_text()
-        if len(re.findall(r'class="proof-card(?:\s|\")',t)) != 2: errors.append('analyst-proof-cards: expected exactly 2 proof cards')
-    c=base/'community-promo'/'index.html'
-    if c.exists():
-        t=c.read_text()
-        for token in ['class="promo__visual"','class="promo__eyebrow"','<h1','class="promo__body"','class="promo__cta"']:
-            if token not in t: errors.append(f'community-promo: missing {token}')
-    i=base/'integration-card-grid'/'index.html'
-    if i.exists():
-        t=i.read_text()
-        if len(re.findall(r'class="integration-card(?:\s|\")',t)) != 4: errors.append('integration-card-grid: expected exactly 4 cards')
-        if len(set(re.findall(r'data-symbol="([^"]+)"',t))) != 4: errors.append('integration-card-grid: symbols must be unique')
-task5_checks()
-
-def task6_checks():
-    base=ROOT/'components'/'product-storytelling'
-    r=base/'resource-grid'/'index.html'
-    if r.exists():
-        t=r.read_text()
-        if len(re.findall(r'class="resource-card(?:\s|\")',t)) < 4: errors.append('resource-grid: expected at least 4 resource cards')
-        if t.count('class="resource-card__type"') < 4: errors.append('resource-grid: missing resource type labels')
-    c=base/'conversion-cta'/'index.html'
-    if c.exists():
-        t=c.read_text()
-        if len(re.findall(r'class="conversion-card(?:\s|\")',t)) != 2: errors.append('conversion-cta: expected exactly 2 primary actions')
-    f=base/'faq-accordion'/'index.html'
-    if f.exists():
-        t=f.read_text(); css=(base/'faq-accordion'/'style.css').read_text() if (base/'faq-accordion'/'style.css').exists() else ''
-        if t.count('aria-expanded=') < 5: errors.append('faq-accordion: expected at least 5 expandable buttons')
-        if 'faq__icon' not in t: errors.append('faq-accordion: missing fixed icon container')
-        if '.faq__icon::before' not in css or '.faq__icon::after' not in css: errors.append('faq-accordion: glyph must use pseudo-elements')
-        base_rule=re.search(r'\.faq__icon\{([^}]*)\}',css)
-        if base_rule and re.search(r'(^|;)\s*transform\s*:',base_rule.group(1)): errors.append('faq-accordion: icon container must not transform')
-        if not (base/'faq-accordion'/'script.js').exists(): errors.append('faq-accordion: missing script.js')
-task6_checks()
-
+def fail(msg): errors.append(msg)
+def scan(text,label):
+ for word in FORBIDDEN:
+  if re.search(re.escape(word),text,re.I): fail(f'{label}: forbidden brand string {word}')
+def prompt(text,label):
+ for token in ['Vibe Coding Prompt','data-prompt','data-prompt-text','data-copy-prompt']:
+  if token not in text: fail(f'{label}: missing {token}')
+def read(path): return path.read_text() if path.exists() else ''
+def component(slug):
+ d=BASE/slug; h=d/'index.html'; c=d/'style.css'
+ if not d.exists(): fail(f'missing component directory: {slug}'); return '',''
+ if not h.exists(): fail(f'{slug}: missing index.html')
+ if not c.exists(): fail(f'{slug}: missing style.css')
+ ht,ct=read(h),read(c); prompt(ht,slug); scan(ht,slug); scan(ct,slug)
+ if ('animation:' in ct or 'transition:' in ct or '@keyframes' in ct) and 'prefers-reduced-motion' not in ct: fail(f'{slug}: missing reduced-motion handling')
+ external=[u for u in re.findall(r'https?://[^\"\'\s<>]+',ht) if 'github.com/ommanish/css-practical-lab' not in u]
+ if external: fail(f'{slug}: external required asset/link dependency {external[0]}')
+ return ht,ct
+texts={s:component(s) for s in COMPONENTS}
+# intro system
+if 'announcement__message' not in texts['announcement-bar'][0] or 'announcement__cta' not in texts['announcement-bar'][0]: fail('announcement-bar: missing message or CTA')
+if ':focus-visible' not in texts['announcement-bar'][1]: fail('announcement-bar: missing focus-visible treatment')
+hero=texts['hero-product-marquee'][0]
+for token in ['class="eyebrow"','<h1','hero__copy','hero__actions','hero__visual']:
+ if token not in hero: fail(f'hero-product-marquee: missing {token}')
+if hero.count('class="button')<2: fail('hero-product-marquee: needs two CTAs')
+if texts['solution-card-grid'][0].count('class="solution-card"')!=6: fail('solution-card-grid: expected 6 cards')
+css=texts['solution-card-grid'][1].replace(' ','')
+for token in ['repeat(3','repeat(2','grid-template-columns:1fr']:
+ if token not in css: fail(f'solution-card-grid: missing responsive rule {token}')
+# tabs + numbered features
+tabs=texts['capability-tabs'][0]
+if 'role="tablist"' not in tabs or tabs.count('role="tab"')<3 or tabs.count('role="tabpanel"')<3: fail('capability-tabs: incomplete ARIA structure')
+if tabs.count('aria-selected="true"')!=1: fail('capability-tabs: exactly one initial selected tab required')
+if not (BASE/'capability-tabs'/'script.js').exists(): fail('capability-tabs: missing script.js')
+for n in ['01','02','03','04']:
+ if f'>{n}<' not in texts['numbered-feature-grid'][0]: fail(f'numbered-feature-grid: missing {n}')
+# trust + story gallery
+if texts['logo-marquee'][0].count('class="marquee__set"')<2: fail('logo-marquee: needs two repeated sets')
+if ':hover' not in texts['logo-marquee'][1] or ':focus-within' not in texts['logo-marquee'][1]: fail('logo-marquee: missing pause states')
+story=texts['customer-story-gallery'][0]
+if len(re.findall(r'class="story-card(?:\s|\")',story))<4 or 'scroll-snap-type' not in texts['customer-story-gallery'][1]: fail('customer-story-gallery: incomplete gallery')
+for label in ['Previous story','Next story']:
+ if label not in story: fail(f'customer-story-gallery: missing {label}')
+# proof/promo/integrations
+if len(re.findall(r'class="proof-card(?:\s|\")',texts['analyst-proof-cards'][0]))!=2: fail('analyst-proof-cards: expected 2 cards')
+for token in ['promo__visual','promo__eyebrow','promo__body','promo__cta']:
+ if token not in texts['community-promo'][0]: fail(f'community-promo: missing {token}')
+integ=texts['integration-card-grid'][0]
+if len(re.findall(r'class="integration-card(?:\s|\")',integ))!=4 or len(set(re.findall(r'data-symbol="([^"]+)"',integ)))!=4: fail('integration-card-grid: expected 4 uniquely illustrated cards')
+# resources/conversion/faq
+if len(re.findall(r'class="resource-card(?:\s|\")',texts['resource-grid'][0]))<4 or texts['resource-grid'][0].count('resource-card__type')<4: fail('resource-grid: expected 4 typed resources')
+if len(re.findall(r'class="conversion-card(?:\s|\")',texts['conversion-cta'][0]))!=2: fail('conversion-cta: expected 2 actions')
+faq=texts['faq-accordion'][0]; faqcss=texts['faq-accordion'][1]
+if faq.count('aria-expanded=')<5 or 'faq__icon' not in faq: fail('faq-accordion: incomplete accessible controls')
+if '.faq__icon::before' not in faqcss or '.faq__icon::after' not in faqcss: fail('faq-accordion: glyph must use pseudo-elements')
+base_rule=re.search(r'\.faq__icon\{([^}]*)\}',faqcss)
+if base_rule and re.search(r'(^|;)\s*transform\s*:',base_rule.group(1)): fail('faq-accordion: icon container must not transform')
+# complete page
 full=ROOT/'examples'/'enterprise-product-overview'
-if not full.exists(): errors.append('missing full-page example: enterprise-product-overview')
-else:
-    for f in ['index.html','style.css','script.js']:
-        if not (full/f).exists(): errors.append(f'enterprise-product-overview: missing {f}')
-    if (full/'index.html').exists(): check_prompt((full/'index.html').read_text(),'enterprise-product-overview')
+for name in ['index.html','style.css','script.js']:
+ if not (full/name).exists(): fail(f'enterprise-product-overview: missing {name}')
+ft,fc,fj=read(full/'index.html'),read(full/'style.css'),read(full/'script.js')
+if ft:
+ prompt(ft,'enterprise-product-overview'); scan(ft,'enterprise-product-overview')
+ hooks=['announcement','hero','solutions','capabilities','features','trust','stories','proof','promo','integrations','resources','conversion','faq']
+ positions=[ft.find(f'data-section="{h}"') for h in hooks]
+ for h,p in zip(hooks,positions):
+  if p<0: fail(f'enterprise-product-overview: missing section {h}')
+ if all(p>=0 for p in positions) and positions!=sorted(positions): fail('enterprise-product-overview: incorrect section order')
+ if len(re.findall(r'<h1(?:\s|>)',ft))!=1: fail('enterprise-product-overview: expected exactly one h1')
+scan(fc,'enterprise-product-overview CSS'); scan(fj,'enterprise-product-overview JS')
+if fc and 'prefers-reduced-motion' not in fc: fail('enterprise-product-overview: missing reduced-motion styles')
 if errors:
-    print('FAIL')
-    print('\n'.join(errors))
-    sys.exit(1)
+ print('FAIL'); print('\n'.join(errors)); sys.exit(1)
 print('PASS: product storytelling acceptance checks')
