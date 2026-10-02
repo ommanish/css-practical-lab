@@ -1,0 +1,65 @@
+:root {
+  --bg:#f0eee8;
+  --ink:#11110f;
+  --muted:#62615b;
+  --accent:#ff4f38;
+  --line:rgba(17,17,15,.16);
+  --radius:28px;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+.skip-link { position:fixed; top:12px; left:12px; z-index:100; transform:translateY(-160%); padding:10px 14px; border-radius:999px; background:#111; color:#fff; }
+.skip-link:focus { transform:none; }
+a { color:inherit; }
+a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+.intro { max-width:1280px; margin:auto; padding:42px 5vw 78px; display:grid; grid-template-columns:1fr auto; gap:18px; border-bottom:1px solid var(--line); }
+.intro p { grid-column:1/-1; color:var(--muted); text-transform:uppercase; letter-spacing:.18em; font-size:12px; }
+.intro h1 { max-width:9ch; margin:0; font-size:clamp(4rem,9vw,9rem); line-height:.88; letter-spacing:-.065em; }
+.intro a { align-self:end; padding-bottom:3px; border-bottom:1px solid currentColor; text-decoration:none; }
+.stack { position:relative; max-width:1280px; margin:0 auto; padding:72px 5vw 110px; perspective:1600px; }
+.stack-card { position:sticky; top:14vh; min-height:clamp(430px,58vh,620px); padding:28px; display:grid; grid-template-columns:.58fr 1fr; grid-template-rows:auto 1fr; overflow:hidden; border:1px solid rgba(17,17,15,.08); border-radius:var(--radius); box-shadow:0 20px 58px rgba(30,28,21,.11); transform-origin:50% 0; will-change:transform; }
+.stack-card + .stack-card { margin-top:9vh; }
+.stack-card:nth-of-type(1) { z-index:1; }
+.stack-card:nth-of-type(2) { z-index:2; }
+.stack-card:nth-of-type(3) { z-index:3; }
+.stack-card:nth-of-type(4) { z-index:4; }
+.card-index { font-size:12px; text-transform:uppercase; letter-spacing:.18em; opacity:.68; }
+.card-copy { align-self:end; max-width:680px; position:relative; z-index:2; }
+.card-copy h2 { margin:0 0 18px; font-size:clamp(3rem,5.7vw,6rem); line-height:.92; letter-spacing:-.058em; }
+.card-copy p { max-width:540px; margin:0; font-size:1.08rem; line-height:1.55; opacity:.78; }
+.card-visual { position:absolute; right:5%; top:12%; width:34%; aspect-ratio:1; opacity:.62; }
+.tone-a { background:#d8ff68; }
+.tone-b { background:#1d2240; color:#f7f5ef; }
+.tone-c { background:#ff765f; }
+.tone-d { background:#e9e3d3; }
+.visual-radar { border:1px solid rgba(17,17,15,.25); border-radius:50%; }
+.visual-radar::before,.visual-radar::after,.visual-radar i { content:""; position:absolute; inset:14%; border:1px solid rgba(17,17,15,.2); border-radius:50%; }
+.visual-radar::after { inset:28%; }
+.visual-radar i:nth-child(1) { inset:42%; }
+.visual-radar i:nth-child(2) { inset:0 50%; border-radius:0; border-width:0 0 0 1px; }
+.visual-radar i:nth-child(3) { inset:50% 0; border-radius:0; border-width:1px 0 0; }
+.visual-nodes span { position:absolute; width:18%; aspect-ratio:1; border-radius:50%; background:#727bff; box-shadow:0 0 0 2.5vw rgba(114,123,255,.08); }
+.visual-nodes span:nth-child(1) { left:8%; top:10%; }
+.visual-nodes span:nth-child(2) { right:6%; top:20%; width:28%; }
+.visual-nodes span:nth-child(3) { left:28%; bottom:4%; width:24%; }
+.visual-nodes span:nth-child(4) { right:10%; bottom:14%; width:12%; }
+.visual-arc b { position:absolute; inset:8%; border:1px solid rgba(17,17,15,.28); border-radius:50%; clip-path:inset(0 0 48% 0); }
+.visual-arc b + b { inset:26%; transform:rotate(180deg); }
+.visual-field { background:radial-gradient(circle at 50% 50%, rgba(17,17,15,.2) 0 2%, transparent 3% 12%, rgba(17,17,15,.16) 13% 13.5%, transparent 14% 28%, rgba(17,17,15,.12) 29% 29.5%, transparent 30%); }
+.progress { display:none; }
+@media (max-width:800px) {
+  .intro { grid-template-columns:1fr; padding-top:28px; padding-bottom:58px; }
+  .intro h1 { font-size:clamp(3.4rem,15vw,6rem); }
+  .stack { padding:54px 18px 84px; perspective:none; }
+  .stack-card { position:relative; top:auto; min-height:430px; grid-template-columns:1fr; padding:24px; }
+  .stack-card + .stack-card { margin-top:16px; }
+  .card-visual { width:62%; right:-8%; top:8%; opacity:.4; }
+  .card-copy h2 { font-size:clamp(2.8rem,12vw,4.8rem); }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  .stack { perspective:none; }
+  .stack-card { transform:none !important; }
+}

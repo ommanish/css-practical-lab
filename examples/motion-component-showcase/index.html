@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080907">
+  <meta name="description" content="Motion Systems — four reusable motion patterns combined in one premium showcase page.">
+  <title>Motion Systems — CSS Practical Lab</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Showcase hero mirrors the approved Kinetic Split Hero interaction. */
+    .hero {
+      min-height: 100svh;
+    }
+    .hero-copy {
+      padding-top: 26px;
+    }
+    .hero-showcase-layout {
+      position: relative;
+      z-index: 4;
+      min-height: calc(100svh - 112px);
+      display: grid;
+      grid-template-columns: minmax(0,.86fr) minmax(520px,1.14fr);
+      gap: clamp(44px,6vw,92px);
+      align-items: center;
+      padding: clamp(42px,6vh,72px) 0 clamp(50px,7vh,80px);
+    }
+    .hero-showcase-copy h1 {
+      max-width: 8.6ch;
+      margin: 0;
+      font-size: clamp(4rem,5.2vw,5.45rem);
+      line-height: .9;
+      letter-spacing: -.065em;
+    }
+    .hero-showcase-copy h1 .accent-line {
+      padding-left: 0;
+    }
+    .hero-showcase-copy .hero-meta {
+      display: block;
+      margin-top: 26px;
+      max-width: 520px;
+    }
+    .hero-showcase-copy .pill {
+      margin-top: 24px;
+      justify-self: auto;
+    }
+    .hero-card-stage {
+      position: relative;
+      width: 100%;
+      height: clamp(500px,62vh,650px);
+      perspective: 1400px;
+    }
+    .hero-card {
+      --rotation: 0deg;
+      --active-rotation: 0deg;
+      position: absolute;
+      width: 76%;
+      height: 48%;
+      min-height: 300px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: var(--radius);
+      clip-path: inset(0 round var(--radius));
+      box-shadow: 0 24px 70px rgba(0,0,0,.34);
+      transform: rotate(var(--rotation));
+      transform-origin: 50% 50%;
+      transition: transform .48s var(--ease), box-shadow .48s var(--ease), border-color .32s ease, filter .32s ease;
+      outline: none;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg,rgba(255,255,255,.035),transparent 38%,rgba(0,0,0,.18));
+      pointer-events: none;
+    }
+    .hero-card > *:not(.hero-card-art) {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-card-art {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      transition: transform .55s var(--ease), opacity .42s ease;
+    }
+    .hero-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: rgba(255,255,255,.76);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .hero-card-hint {
+      position: absolute !important;
+      right: 22px;
+      bottom: 20px;
+      color: rgba(255,255,255,.55);
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: opacity .22s ease, transform .3s var(--ease);
+    }
+    .hero-card-hint::after {
+      content: "↗";
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--accent);
+    }
+    .hero-card-copy {
+      max-width: 76%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .34s ease, transform .48s var(--ease);
+      pointer-events: none;
+    }
+    .hero-card-copy small {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255,255,255,.62);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .hero-card-copy strong {
+      display: block;
+      font-size: clamp(1.7rem,2.5vw,2.8rem);
+      line-height: .95;
+      letter-spacing: -.045em;
+    }
+    .hero-card-copy p {
+      max-width: 30ch;
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+    .hero-card-one {
+      --rotation: -4deg;
+      --active-rotation: -.6deg;
+      left: 0;
+      top: 2%;
+      z-index: 1;
+      background: radial-gradient(circle at 18% 22%,rgba(186,255,53,.24),transparent 28%),linear-gradient(145deg,#1a2112,#090b08 66%);
+    }
+    .hero-card-two {
+      --rotation: .8deg;
+      --active-rotation: 0deg;
+      left: 12%;
+      top: 26%;
+      z-index: 2;
+      background: radial-gradient(circle at 72% 36%,rgba(91,86,246,.38),transparent 26%),linear-gradient(125deg,#171522,#0a090f 68%);
+    }
+    .hero-card-three {
+      --rotation: 5deg;
+      --active-rotation: .7deg;
+      left: 24%;
+      top: 50%;
+      z-index: 3;
+      background: radial-gradient(circle at 78% 22%,rgba(255,112,88,.36),transparent 25%),linear-gradient(128deg,#24140e,#0d0907 70%);
+    }
+    .hero-card-one .hero-card-art {
+      opacity: .42;
+      background-image: repeating-radial-gradient(circle at 0 0,transparent 0 8px,rgba(255,255,255,.035) 9px 10px);
+    }
+    .hero-card-two .hero-card-art {
+      width: 58%;
+      aspect-ratio: 1;
+      left: 24%;
+      top: 8%;
+      right: auto;
+      bottom: auto;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4vw rgba(255,255,255,.018),0 0 0 8vw rgba(255,255,255,.014);
+    }
+    .hero-card-three .hero-card-art {
+      background: linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+      background-size: 46px 46px;
+    }
+    .hero-card:hover,
+    .hero-card:focus-visible,
+    .hero-card.is-active {
+      z-index: 20;
+      transform: translate3d(0,-62px,92px) scale(1.075) rotate(var(--active-rotation));
+      border-color: rgba(255,255,255,.38);
+      box-shadow: 0 48px 120px rgba(0,0,0,.62),0 0 0 1px rgba(186,255,53,.1);
+    }
+    .hero-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+    .hero-card:hover .hero-card-copy,
+    .hero-card:focus-visible .hero-card-copy,
+    .hero-card.is-active .hero-card-copy {
+      opacity: 1;
+      transform: none;
+    }
+    .hero-card:hover .hero-card-hint,
+    .hero-card:focus-visible .hero-card-hint,
+    .hero-card.is-active .hero-card-hint {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .hero-card:hover .hero-card-art,
+    .hero-card:focus-visible .hero-card-art,
+    .hero-card.is-active .hero-card-art {
+      transform: translate3d(0,-8px,0) scale(1.07);
+    }
+    .hero-scroll {
+      display: none;
+    }
+    .bridge {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+    .mosaic-section {
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 88px;
+    }
+    .mosaic-section.section-pad {
+      padding-top: clamp(92px,9vw,132px);
+    }
+    @media (max-width: 900px) {
+      .hero-showcase-layout {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 42px;
+        padding: 56px 0 64px;
+      }
+      .hero-showcase-copy h1 {
+        max-width: 9ch;
+        font-size: clamp(3.6rem,14vw,6.2rem);
+      }
+      .hero-card-stage {
+        height: auto;
+        display: grid;
+        gap: 14px;
+      }
+      .hero-card,
+      .hero-card:hover,
+      .hero-card:focus-visible,
+      .hero-card.is-active {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+        transform: none;
+      }
+      .hero-card-copy {
+        max-width: 82%;
+        opacity: 1;
+        transform: none;
+      }
+      .hero-card-hint {
+        display: none;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-card:hover,
+      .hero-card:focus-visible,
+      .hero-card.is-active {
+        transform: rotate(var(--rotation));
+      }
+      .hero-card-copy {
+        opacity: 1;
+        transform: none;
+      }
+      .hero-card-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="Motion Systems home"><span></span>MS / 04</a>
+    <nav aria-label="Primary navigation"><a href="#mosaic">Mosaic</a><a href="#stack">Stack</a><a href="#orbit">Orbit</a></nav>
+    <a class="header-link" href="../../index.html">CSS Practical Lab ↗</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero" data-kinetic-hero>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="shell hero-copy">
+        <div class="eyebrow-row"><span>Motion Systems</span><span>Hover / focus / layered depth</span></div>
+        <div class="hero-showcase-layout">
+          <div class="hero-showcase-copy">
+            <h1><span>Design the</span><span class="accent-line">movement.</span></h1>
+            <div class="hero-meta">
+              <p>Three stepped cards stay visible as one composition. Hover or focus a card to bring it clearly forward and reveal its story while the other layers remain in place.</p>
+              <a class="pill" href="#mosaic">Start exploring <span>↓</span></a>
+            </div>
+          </div>
+
+          <div class="hero-card-stage" aria-label="Three layered motion cards">
+            <article class="hero-card hero-card-one" data-kinetic-panel tabindex="0" aria-label="Signal card. Hover or focus to reveal details.">
+              <div class="hero-card-art" aria-hidden="true"></div>
+              <div class="hero-card-top"><span>01</span><span>Signal</span></div>
+              <div class="hero-card-hint" aria-hidden="true">Explore</div>
+              <div class="hero-card-copy"><small>Observe</small><strong>Find the signal.</strong><p>Establish a clear first layer before adding motion.</p></div>
+            </article>
+
+            <article class="hero-card hero-card-two" data-kinetic-panel tabindex="0" aria-label="Shift card. Hover or focus to reveal details.">
+              <div class="hero-card-art" aria-hidden="true"></div>
+              <div class="hero-card-top"><span>02</span><span>Shift</span></div>
+              <div class="hero-card-hint" aria-hidden="true">Explore</div>
+              <div class="hero-card-copy"><small>Separate</small><strong>Create depth.</strong><p>Bring one layer forward without disturbing the overall stack.</p></div>
+            </article>
+
+            <article class="hero-card hero-card-three" data-kinetic-panel tabindex="0" aria-label="Reveal card. Hover or focus to reveal details.">
+              <div class="hero-card-art" aria-hidden="true"></div>
+              <div class="hero-card-top"><span>03</span><span>Reveal</span></div>
+              <div class="hero-card-hint" aria-hidden="true">Explore</div>
+              <div class="hero-card-copy"><small>Resolve</small><strong>Reveal the story.</strong><p>Use the foreground state to reveal the strongest content moment.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bridge shell">
+      <p class="section-index">01 / Manifesto</p>
+      <div><h2>Motion should explain the layout, not fight it.</h2><p>Every pattern below works as a component on its own. Together, they form a single editorial product story with one visual language.</p></div>
+    </section>
+
+    <section class="mosaic-section section-pad" id="mosaic">
+      <div class="shell section-heading"><div><p class="section-index">02 / Spotlight Mosaic</p><h2>Let the grid respond.</h2></div><p>CSS Grid, radial gradients, custom properties, and a tiny pointer helper. No animation library required.</p></div>
+      <div class="mosaic shell" data-mosaic>
+        <a class="m-tile m-wide" href="#stack" data-mosaic-tile><span class="tile-index">01 / Field</span><div class="tile-art field" aria-hidden="true"></div><div class="tile-copy"><small>Responsive spotlight</small><h3>See what attention touches.</h3><p>The highlight follows the pointer while the content and layout stay stable.</p></div></a>
+        <a class="m-tile m-tall" href="#stack" data-mosaic-tile><span class="tile-index">02 / Arc</span><div class="tile-art arc" aria-hidden="true"></div><div class="tile-copy"><small>CSS depth</small><h3>Build atmosphere without canvas.</h3><p>Gradients and perspective create a tactile surface.</p></div></a>
+        <a class="m-tile" href="#stack" data-mosaic-tile><span class="tile-index">03 / Grid</span><div class="tile-art grid" aria-hidden="true"></div><div class="tile-copy"><small>Asymmetry</small><h3>Break the rhythm.</h3><p>Different spans create editorial pacing.</p></div></a>
+        <a class="m-tile" href="#stack" data-mosaic-tile><span class="tile-index">04 / Pulse</span><div class="tile-art pulse" aria-hidden="true"></div><div class="tile-copy"><small>Focus parity</small><h3>Hover is not the only path.</h3><p>Keyboard focus reveals the same layer.</p></div></a>
+        <a class="m-tile m-wide" href="#stack" data-mosaic-tile><span class="tile-index">05 / Beam</span><div class="tile-art beam" aria-hidden="true"></div><div class="tile-copy"><small>Touch-safe</small><h3>Motion that still reads when static.</h3><p>Coarse-pointer devices keep every message visible.</p></div></a>
+      </div>
+    </section>
+
+    <section class="stack-section section-pad" id="stack">
+      <div class="shell section-heading inverse"><div><p class="section-index">03 / Perspective Stack</p><h2>Stack ideas in depth.</h2></div><p>Large sticky panels hand off one story beat at a time while previous panels recede instead of disappearing.</p></div>
+      <div class="stack shell" data-stack><aside class="stack-progress" data-stack-progress aria-hidden="true"><span></span></aside><article class="stack-card card-lime" data-stack-card><span>01 / Signal</span><div><h3>Start with one unmistakable idea.</h3><p>Scale creates hierarchy before motion even begins.</p></div><div class="stack-art art-signal" aria-hidden="true"></div></article><article class="stack-card card-violet" data-stack-card><span>02 / Context</span><div><h3>Let the old layer remain in the story.</h3><p>Depth creates continuity between chapters.</p></div><div class="stack-art art-context" aria-hidden="true"></div></article><article class="stack-card card-coral" data-stack-card><span>03 / Decision</span><div><h3>Use perspective lightly.</h3><p>A few degrees of rotation is enough to make the handoff feel physical.</p></div><div class="stack-art art-decision" aria-hidden="true"></div></article><article class="stack-card card-ivory" data-stack-card><span>04 / Release</span><div><h3>Give the page back to the user.</h3><p>The final panel resolves cleanly into the next section.</p></div><div class="stack-art art-release" aria-hidden="true"></div></article></div>
+    </section>
+
+    <section class="orbit-section section-pad" id="orbit" data-orbit>
+      <div class="shell section-heading"><div><p class="section-index">04 / Orbital Story</p><h2>Tell one story around one system.</h2></div><p>Scroll advances a central orbital model while the narrative changes around it.</p></div>
+      <div class="orbit-shell shell"><div class="orbit-copy"><article class="orbit-chapter is-active" data-orbit-chapter="0"><span>01 / Detect</span><h3>A shift appears.</h3><p>A quiet signal becomes visible without breaking the overall composition.</p></article><article class="orbit-chapter" data-orbit-chapter="1"><span>02 / Connect</span><h3>Relationships emerge.</h3><p>One marker moves, but the entire system remains present as context.</p></article><article class="orbit-chapter" data-orbit-chapter="2"><span>03 / Decide</span><h3>Attention narrows.</h3><p>The active node brightens while supporting information recedes.</p></article><article class="orbit-chapter" data-orbit-chapter="3"><span>04 / Act</span><h3>The system resolves.</h3><p>The final state completes the loop and releases back into page flow.</p></article></div><div class="orbit-visual" aria-hidden="true"><svg viewBox="0 0 600 600" role="presentation"><circle cx="300" cy="300" r="224"></circle><circle class="inner" cx="300" cy="300" r="148"></circle><path d="M300 76 A224 224 0 1 1 299.9 76"></path></svg><div class="orbit-core"><small>STATE</small><strong data-orbit-core-value>01</strong></div><i class="orbit-node n1 is-active" data-orbit-node="0">01</i><i class="orbit-node n2" data-orbit-node="1">02</i><i class="orbit-node n3" data-orbit-node="2">03</i><i class="orbit-node n4" data-orbit-node="3">04</i><span class="orbit-marker" data-orbit-marker></span></div></div><div class="orbit-scroll-space" aria-hidden="true"></div>
+    </section>
+
+    <section class="final-cta" id="final-cta"><div class="cta-grid" aria-hidden="true"></div><div class="shell cta-copy"><p class="section-index">Motion / reusable / practical</p><h2>Use the pattern.<br>Keep your own voice.</h2><div><a class="pill light" href="../../index.html">Explore CSS Practical Lab ↗</a><a class="text-link" href="#hero">Back to top ↑</a></div></div></section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+  <script src="motion.js"></script>
+</body>
+</html>
