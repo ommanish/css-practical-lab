@@ -1,0 +1,83 @@
+.build-prompt {
+  margin-top: clamp(56px, 6vw, 88px);
+  border-top: 1px solid var(--line, rgba(255,255,255,.14));
+  padding: clamp(64px, 8vw, 104px) 0 clamp(78px, 9vw, 124px);
+}
+
+.prompt-shell {
+  width: min(1120px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.prompt-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.prompt-kicker {
+  margin: 0 0 10px;
+  color: var(--accent, currentColor);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.prompt-heading h2 {
+  margin: 0;
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.copy-prompt {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent, #fff);
+  color: #111;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.copy-prompt:hover { transform: translateY(-1px); }
+.copy-prompt:active { transform: translateY(0); }
+.copy-prompt:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+
+.prompt-card {
+  margin: 0;
+  padding: clamp(22px, 3vw, 34px);
+  overflow: auto;
+  border: 1px solid var(--line, rgba(255,255,255,.14));
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--ink, #fff) 5%, transparent);
+  color: var(--ink, inherit);
+  white-space: pre-wrap;
+  word-break: normal;
+  font: 500 15px/1.72 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.copy-status {
+  min-height: 22px;
+  margin: 12px 0 0;
+  color: var(--muted, currentColor);
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .prompt-shell { width: min(100% - 36px, 1120px); }
+  .prompt-heading { align-items: flex-start; flex-direction: column; }
+  .copy-prompt { align-self: flex-start; }
+  .prompt-card { font-size: 13px; line-height: 1.65; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-prompt { transition: none; }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kinetic Split Hero — a reusable motion component demo.">
+  <title>Kinetic Split Hero</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../_shared/prompt.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main">
+    <section class="kinetic-hero" data-kinetic-hero>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-shell">
+        <div class="hero-kicker"><span>Motion Component 01</span><span>Three-card / Hover / Focus</span></div>
+
+        <div class="hero-layout">
+          <div class="hero-copy-column">
+            <p class="hero-overline">Kinetic split system</p>
+            <h1><span class="headline-line">Move beyond</span><span class="headline-line accent">the expected.</span></h1>
+            <p class="hero-copy">Three stepped cards stay visible as one composition. Hover or focus a card to bring it forward and reveal its story without moving the whole page.</p>
+            <div class="hero-actions"><a class="button primary" href="#details">Explore pattern</a><a class="button ghost" href="../../../index.html">Back to lab</a></div>
+            <div class="hero-footer"><span>Hover a card</span><i aria-hidden="true"></i></div>
+          </div>
+
+          <div class="split-stage" aria-label="Three layered concept cards">
+            <article class="panel panel-a" data-kinetic-panel tabindex="0" aria-label="Signal card. Hover or focus to reveal details.">
+              <div class="panel-art panel-noise" aria-hidden="true"></div>
+              <div class="panel-top"><span>01</span><span>Signal</span></div>
+              <div class="panel-hint" aria-hidden="true">Explore</div>
+              <div class="panel-copy"><small>Observe</small><strong>Find the signal.</strong><p>Establish a clear first layer before adding motion.</p></div>
+            </article>
+
+            <article class="panel panel-b" data-kinetic-panel tabindex="0" aria-label="Shift card. Hover or focus to reveal details.">
+              <div class="panel-art panel-ring" aria-hidden="true"></div>
+              <div class="panel-top"><span>02</span><span>Shift</span></div>
+              <div class="panel-hint" aria-hidden="true">Explore</div>
+              <div class="panel-copy"><small>Separate</small><strong>Create depth.</strong><p>Offset the next layer just enough to show hierarchy.</p></div>
+            </article>
+
+            <article class="panel panel-c" data-kinetic-panel tabindex="0" aria-label="Reveal card. Hover or focus to reveal details.">
+              <div class="panel-art panel-grid" aria-hidden="true"></div>
+              <div class="panel-top"><span>03</span><span>Reveal</span></div>
+              <div class="panel-hint" aria-hidden="true">Explore</div>
+              <div class="panel-copy"><small>Resolve</small><strong>Reveal the story.</strong><p>Use the final card as the strongest visual destination.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" id="details">
+      <p class="eyebrow">Reusable behavior</p>
+      <h2>Keep the stack. Focus one layer.</h2>
+      <p>All three cards remain visible in the stepped composition. Hover, keyboard focus, or tap brings one card forward and reveals its supporting content while the other layers stay in place.</p>
+    </section>
+
+    <section class="build-prompt" aria-labelledby="build-prompt-title">
+      <div class="prompt-shell">
+        <div class="prompt-heading">
+          <div>
+            <p class="prompt-kicker">Build this interaction</p>
+            <h2 id="build-prompt-title">Prompt</h2>
+          </div>
+          <button class="copy-prompt" type="button" data-copy-prompt aria-describedby="copy-status">Copy prompt</button>
+        </div>
+        <pre class="prompt-card"><code data-prompt-text>Create a premium three-card kinetic hero for a modern product page. Use a restrained dark palette with one vivid accent and a clear two-column desktop composition: editorial hero copy on the left and three visibly stepped cards on the right. Keep all three cards visible at the same time so the layered concept is obvious immediately.
+
+Each card should show only its number, short label, and visual treatment in the resting state. When a user hovers, keyboard-focuses, or taps a card, make the motion clearly visible: bring that card above the other layers, lift it roughly 50–70px, move it forward in depth, scale it to about 1.06–1.08, straighten most of its resting rotation, deepen the shadow, and slightly shift/scale the background artwork. At the same time, reveal the supporting eyebrow, headline, and description by fading and sliding the copy upward around 24–32px. The other two cards must remain visible and stay in their original positions so the stack still reads as one composition.
+
+Use CSS transitions for the primary hover/focus motion with a refined custom easing curve. Use only a very small vanilla JavaScript helper to support persistent tap state on coarse-pointer devices. Do not use scroll-driven animation, pinning, or scroll hijacking for this component. Respect prefers-reduced-motion by revealing the content without transform animation. On mobile, stack the three cards vertically and keep the full content readable without hover. Include visible keyboard focus states and preserve all essential content if JavaScript fails.</code></pre>
+        <p class="copy-status" id="copy-status" data-copy-status aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="motion.js"></script>
+  <script src="../_shared/prompt.js"></script>
+</body>
+</html>

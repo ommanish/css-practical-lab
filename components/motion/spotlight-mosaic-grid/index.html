@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Spotlight Mosaic Grid — CSS-first interactive motion component.">
+  <title>Spotlight Mosaic Grid</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../_shared/prompt.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="page-shell">
+    <header class="intro">
+      <p>Motion Component 03</p>
+      <h1>Spotlight<br>Mosaic Grid</h1>
+      <div><span>CSS Grid · Pointer spotlight</span><a href="../../../index.html">Back to lab</a></div>
+    </header>
+
+    <section class="mosaic" data-mosaic aria-label="Interactive project mosaic">
+      <a class="tile tile-a" href="#alpha" data-mosaic-tile><span class="tile-no">01</span><div class="tile-art rings" aria-hidden="true"></div><div class="tile-copy"><small>System / Alpha</small><h2>Focused intelligence.</h2><p>Move the spotlight without moving the layout.</p></div></a>
+      <a class="tile tile-b" href="#beta" data-mosaic-tile><span class="tile-no">02</span><div class="tile-art bars" aria-hidden="true"></div><div class="tile-copy"><small>Signal / Beta</small><h2>Dense, readable motion.</h2><p>Pointer position becomes a design input.</p></div></a>
+      <a class="tile tile-c" href="#gamma" data-mosaic-tile><span class="tile-no">03</span><div class="tile-art orb" aria-hidden="true"></div><div class="tile-copy"><small>Orbit / Gamma</small><h2>Depth without WebGL.</h2><p>CSS gradients and variables create the illusion.</p></div></a>
+      <a class="tile tile-d" href="#delta" data-mosaic-tile><span class="tile-no">04</span><div class="tile-art matrix" aria-hidden="true"></div><div class="tile-copy"><small>Grid / Delta</small><h2>Asymmetric rhythm.</h2><p>Different spans keep the composition editorial.</p></div></a>
+      <a class="tile tile-e" href="#epsilon" data-mosaic-tile><span class="tile-no">05</span><div class="tile-art slash" aria-hidden="true"></div><div class="tile-copy"><small>Motion / Epsilon</small><h2>Hover and focus agree.</h2><p>Keyboard users receive the same information.</p></div></a>
+      <a class="tile tile-f" href="#zeta" data-mosaic-tile><span class="tile-no">06</span><div class="tile-art pulse" aria-hidden="true"></div><div class="tile-copy"><small>Field / Zeta</small><h2>Touch remains complete.</h2><p>Nothing essential depends on a cursor.</p></div></a>
+    </section>
+
+    <section class="build-prompt" aria-labelledby="build-prompt-title">
+      <div class="prompt-shell">
+        <div class="prompt-heading">
+          <div>
+            <p class="prompt-kicker">Build this interaction</p>
+            <h2 id="build-prompt-title">Prompt</h2>
+          </div>
+          <button class="copy-prompt" type="button" data-copy-prompt aria-describedby="copy-status">Copy prompt</button>
+        </div>
+        <pre class="prompt-card"><code data-prompt-text>Create an experimental but practical spotlight mosaic grid for a modern portfolio or product page. Use an asymmetric CSS Grid with a mix of wide, tall, and compact tiles. Each tile should include an index, short category label, headline, supporting copy, and an abstract CSS-generated visual so no canvas or WebGL is required.
+
+Make the core interaction CSS-first. Use custom properties for pointer coordinates, radial gradients or masks for the spotlight, and perspective transforms for a very subtle tilt. Add only a tiny vanilla JavaScript helper that converts pointer position into CSS custom properties. Hover and keyboard focus must reveal the same supporting content.
+
+Keep the layout stable while the spotlight moves. On touch or coarse-pointer devices, disable tilt and show all important copy without requiring interaction. Respect prefers-reduced-motion, provide strong focus-visible states, and ensure the grid remains useful with JavaScript disabled.</code></pre>
+        <p class="copy-status" id="copy-status" data-copy-status aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="motion.js"></script>
+  <script src="../_shared/prompt.js"></script>
+</body>
+</html>
